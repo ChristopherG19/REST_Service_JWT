@@ -21,13 +21,14 @@ public class NoAuthService implements NoAuthServiceInt{
 	@Override
 	public String getUserByUsernameAndPassword(Person person){
 		Person user = personRepository.findByUsernameAndPassword(person.getUsername(), person.getPassword());
-		//String token = "";
+
 		try {
 			if (person.getUsername() == null || user.getPassword() == null) {
 				return "Usuario o contraseña inválida";
 			}
 			String token = jG.generateToken(user);
-			return "Token: "+token;
+			return "Token: "+ token;
+			
 		} catch (Exception e) {
 			return "Usuario o contraseña inválida";
 		}
